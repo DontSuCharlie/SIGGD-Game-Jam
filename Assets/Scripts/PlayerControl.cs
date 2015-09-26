@@ -139,6 +139,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void moveWalker() {
+		walker.transform.position = transform.TransformPoint(new Vector3(0,1,1.5f)); //reset walker position
 		walkerRB.AddRelativeForce (new Vector3 (0, 2, 2), ForceMode.Impulse);
 
 	}
@@ -149,6 +150,7 @@ public class PlayerControl : MonoBehaviour {
 	public void thrustWalker() {
 		if (!walk) {
 			if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) < walkDistance + 1) {
+				walker.transform.position = transform.TransformPoint(new Vector3(0,1,1.5f)); //reset walker position
 				walkerRB.AddRelativeForce (new Vector3 (0, 4, 5), ForceMode.Impulse);
 			}
 		}
