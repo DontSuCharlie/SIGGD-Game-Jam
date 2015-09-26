@@ -11,8 +11,13 @@ public class PlayerControl : MonoBehaviour {
 	private bool walk = false;
 	public float turnSpeed = 0.2f;
 	public float walkSpeed = 0.2f;
+	public float maxSpeed = 0.5f;
 	private bool leftBlocked = false;
 	private bool rightBlocked = false;
+	public float moveDelay = 2f;
+	public float walkDistance = 1;
+	private bool canRotate = true;
+	public float maxWalkerDist = 4f;
 	//public float timer = 0;
 
 	// Use this for initialization
@@ -39,12 +44,33 @@ public class PlayerControl : MonoBehaviour {
 			if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(0,0,1))) {
 			}
 		}
+		if (Input.GetButtonDown("Push")) {
+			thrustWalker();
+		}
 
 	}
 
 
 	void FixedUpdate() {
-		if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) > 1) {
+		//limit player speed
+		if (playerRB.velocity.magnitude > maxSpeed) {
+			playerRB.velocity = playerRB.velocity.normalized * maxSpeed;
+		}
+
+		//check if too far from walker
+		tooFarFromWalker ();
+
+		if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) < walkDistance + 1) {
+			canRotate = true;
+		} else {
+			canRotate = false;
+		}
+
+		//--person forward movement--
+		Vector3 player2DPos = new Vector3 (transform.position.x, 0, transform.position.z);
+		Vector3 walker2DPos = new Vector3 (walkerMoveTarget.transform.position.x, 0, walkerMoveTarget.transform.position.z);
+		//if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) > walkDistance) {
+		if (Vector3.Distance (player2DPos, walker2DPos) > walkDistance) {
 			playerRB.AddRelativeForce (new Vector3(0, 0, walkSpeed), ForceMode.VelocityChange);
 		} else {
 			playerRB.AddForce (Vector3.zero, ForceMode.VelocityChange);
@@ -53,14 +79,14 @@ public class PlayerControl : MonoBehaviour {
 		//turn right
 		if (Input.GetAxis ("Horizontal") > 0) {
 
-			if (!rightBlocked) {
+			if (!rightBlocked && !walk && canRotate) {
 				transform.Rotate (0, turnSpeed, 0);
 			}
 		}
 		//turn left
 		if (Input.GetAxis ("Horizontal") < 0) {
 
-			if (!leftBlocked) {
+			if (!leftBlocked && !walk && canRotate) {
 				transform.Rotate (0, -turnSpeed, 0);
 			}
 		}
@@ -72,12 +98,12 @@ public class PlayerControl : MonoBehaviour {
 		//Debug.Log (newYRot);
 		Debug.Log (Input.GetAxis ("Mouse Y"));
 		//limit horizontal rotation
-		if ((newYRot > 90 && newYRot < 275) || (newYRot > 180 && newYRot < 90)) {
+		if ((newYRot > 65 && newYRot < 325) || (newYRot > 180 && newYRot < 65)) {
 			//Debug.Log (newYRot);
 			newYRot = yRot;
 		}
 		//limit vertical rotation
-		if ((newXRot > 50 && newXRot < 180) || (newXRot < 340 && newXRot > 275)) {
+		if ((newXRot > 5 && newXRot < 180) || (newXRot < 340 && newXRot > 275)) {
 			//Debug.Log (newXRot);
 			newXRot = xRot;
 		}
@@ -90,10 +116,12 @@ public class PlayerControl : MonoBehaviour {
 	IEnumerator moveAll() {
 		while (true) {
 			while (walk) {
-				moveWalker ();
-				yield return new WaitForSeconds (3);
+				if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) < walkDistance + 1){
+					moveWalker ();
+				}
+				yield return new WaitForSeconds (moveDelay);
 			}
-			yield return new WaitForSeconds (1*0.2f);
+			yield return new WaitForSeconds (1f);
 		}
 	}
 
@@ -103,6 +131,14 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void movePlayer() {
+	}
+
+	public void thrustWalker() {
+		if (!walk) {
+			if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) < walkDistance + 1) {
+				walkerRB.AddRelativeForce (new Vector3 (0, 4, 5), ForceMode.Impulse);
+			}
+		}
 	}
 
     /*public int getEnergy()
@@ -133,6 +169,12 @@ public class PlayerControl : MonoBehaviour {
 	}
 	void rightIsNotBlocked() {
 		rightBlocked = false;
+	}
+
+	void tooFarFromWalker() {
+		if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) > maxWalkerDist) {
+			playerRB.constraints = RigidbodyConstraints.None;
+		}
 	}
     
     //updates heart status based on..??
