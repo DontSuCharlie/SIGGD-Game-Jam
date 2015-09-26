@@ -260,6 +260,10 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: -1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 11418094, guid: e695aba71f9f4de4eb6d49e268eece0c, type: 2}
+      propertyPath: maxWalkerDist
+      value: 3.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e695aba71f9f4de4eb6d49e268eece0c, type: 2}
   m_IsPrefabParent: 0
