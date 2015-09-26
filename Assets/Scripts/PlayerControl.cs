@@ -92,7 +92,7 @@ public class PlayerControl : MonoBehaviour {
 	public void movePlayer() {
 	}
 
-    public int getEnergy()
+    /*public int getEnergy()
     {
         return energy;
     }
@@ -107,7 +107,7 @@ public class PlayerControl : MonoBehaviour {
     public int getRightEarBattery()
     {
         return rightEarBattery;
-    }
+    }*/
 
 	void leftIsBlocked() {
 		leftBlocked = true;
