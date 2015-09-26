@@ -3,15 +3,16 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour {
     //for rendering/physics
-	public Rigidbody playerRB;
-	public GameObject walker;
-	public GameObject walkerMoveTarget;
-	public Rigidbody walkerRB;
-	public bool walk = false;
+	private Rigidbody playerRB;
+	private GameObject walker;
+	private GameObject walkerMoveTarget;
+	private Rigidbody walkerRB;
+	private GameObject cam;
+	private bool walk = false;
 	public float turnSpeed = 0.2f;
 	public float walkSpeed = 0.2f;
-	public bool leftBlocked = false;
-	public bool rightBlocked = false;
+	private bool leftBlocked = false;
+	private bool rightBlocked = false;
 	//public float timer = 0;
 
 	// Use this for initialization
@@ -20,6 +21,7 @@ public class PlayerControl : MonoBehaviour {
 		walker = GameObject.Find ("Walker");
 		walkerMoveTarget = GameObject.Find ("WalkerMoveTarget");
 		walkerRB = walker.GetComponent<Rigidbody>();
+		cam = GameObject.Find ("PlayerCam");
         //InvokeRepeating ("inputHandeling", 0f, 1f);
         StartCoroutine("moveAll");
     }
@@ -32,6 +34,12 @@ public class PlayerControl : MonoBehaviour {
 		if (Input.GetButtonUp("WalkForward")) {
 			walk = false;
 		}
+		if (Input.GetButtonDown("Grab")) {
+			RaycastHit hit;
+			if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(0,0,1))) {
+			}
+		}
+
 	}
 
 
@@ -41,34 +49,39 @@ public class PlayerControl : MonoBehaviour {
 		} else {
 			playerRB.AddForce (Vector3.zero, ForceMode.VelocityChange);
 		}
-		//player rotation
+		//--player rotation--
+		//turn right
 		if (Input.GetAxis ("Horizontal") > 0) {
-			//prevent rotation of something to the right
-			/*RaycastHit hit;
-			if((Physics.Raycast(walker.transform.TransformPoint(Vector3.zero), walker.transform.TransformDirection(new Vector3(1,0,0)), out hit, 1)) && 
-			   (Physics.Raycast(walker.transform.TransformPoint(new Vector3(0,0,-1)), walker.transform.TransformDirection(new Vector3(1,0,0)), out hit, 1))) {
-			}
-			else {
-				transform.Rotate (0, turnSpeed, 0);
-			}*/
+
 			if (!rightBlocked) {
 				transform.Rotate (0, turnSpeed, 0);
 			}
 		}
+		//turn left
 		if (Input.GetAxis ("Horizontal") < 0) {
-			//prevent rotation if something to the left
-			/*RaycastHit hit;
-			if((Physics.Raycast(walker.transform.TransformPoint(Vector3.zero), walker.transform.TransformDirection(new Vector3(-1,0,0)), out hit, 1)) && 
-			   (Physics.Raycast(walker.transform.TransformPoint(new Vector3(0,0,-1)), walker.transform.TransformDirection(new Vector3(-1,0,0)), out hit, 1))) {
-			}
-			else {
-				transform.Rotate (0, -turnSpeed, 0);
-			}*/
+
 			if (!leftBlocked) {
 				transform.Rotate (0, -turnSpeed, 0);
 			}
 		}
-
+		//--camera rotation--
+		float yRot = cam.transform.localRotation.eulerAngles.y;
+		float xRot = cam.transform.localRotation.eulerAngles.x;
+		float newYRot = Input.GetAxis("Mouse X")  + yRot;
+		float newXRot = (-Input.GetAxis("Mouse Y"))  + xRot;
+		//Debug.Log (newYRot);
+		Debug.Log (Input.GetAxis ("Mouse Y"));
+		//limit horizontal rotation
+		if ((newYRot > 90 && newYRot < 275) || (newYRot > 180 && newYRot < 90)) {
+			//Debug.Log (newYRot);
+			newYRot = yRot;
+		}
+		//limit vertical rotation
+		if ((newXRot > 50 && newXRot < 180) || (newXRot < 340 && newXRot > 275)) {
+			//Debug.Log (newXRot);
+			newXRot = xRot;
+		}
+		cam.transform.localEulerAngles = new Vector3 (newXRot, newYRot, 0);
 	}
 
 	public void inputHandeling() {
