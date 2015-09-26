@@ -28,6 +28,8 @@ GameObject:
   - 136: {fileID: 13626690}
   - 114: {fileID: 11418094}
   - 54: {fileID: 5445330}
+  - 114: {fileID: 11448348}
+  - 195: {fileID: 19590784}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -153,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -14.1275673, y: -2.01202287e-17, z: 9.0613451}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 440918}
@@ -417,6 +419,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf025267c0e6f1446b9ee98123641934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rate: 90
+  rateChange: 1
+  normalRate: 90
+  maxRate: 120
+  minRate: 50
+  rateDisplay: {fileID: 0}
+  fov: 60
 --- !u!114 &11480640
 MonoBehaviour:
   m_ObjectHideFlags: 1
