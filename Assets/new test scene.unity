@@ -250,7 +250,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11418094, guid: e695aba71f9f4de4eb6d49e268eece0c, type: 2}
       propertyPath: walkDistance
-      value: 1
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 5445330, guid: e695aba71f9f4de4eb6d49e268eece0c, type: 2}
       propertyPath: m_Constraints

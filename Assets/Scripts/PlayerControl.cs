@@ -129,7 +129,7 @@ public class PlayerControl : MonoBehaviour {
 	IEnumerator moveAll() {
 		while (true) {
 			while (walk) {
-				if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) < walkDistance + 1){
+				if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) < walkDistance + 3.5f){
 					moveWalker ();
 				}
 				yield return new WaitForSeconds (moveDelay);
@@ -188,7 +188,7 @@ public class PlayerControl : MonoBehaviour {
 
 	void tooFarFromWalker() {
 		if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) > maxWalkerDist) {
-			playerRB.velocity = Vector3.zero;
+			//playerRB.velocity = Vector3.zero;
 			playerRB.constraints = RigidbodyConstraints.None;
 			alive = false;
 		}
