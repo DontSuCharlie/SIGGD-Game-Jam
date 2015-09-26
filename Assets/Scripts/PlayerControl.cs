@@ -2,12 +2,6 @@
 using System.Collections;
 
 public class PlayerControl : MonoBehaviour {
-    //Constants
-    //maximum values for your player's stats
-    private const int MaxEnergy = 100;
-    private const int MaxLeftEarBattery = 100;
-    private const int MaxRightEarBattery = 100;
-
     //for rendering/physics
 	public Rigidbody playerRB;
 	public GameObject walker;
@@ -20,31 +14,18 @@ public class PlayerControl : MonoBehaviour {
 	public bool rightBlocked = false;
 	//public float timer = 0;
 
-    //player's stats
-    private int leftEarBattery;//battery life of left ear
-    private int rightEarBattery;//battery life of right ear
-    private int heartStat;//status of heart, higher = heart attack and shizz, lower = heart dying and shizz
-    //heartStat caps at 100, if it goes above 100, it goes back to 0 to signify death. (mod it)
-    //private int heartRate_amplitude;//amplitude of heart monitor
-    //private int heartRate_period;//period of the heart monitor
-    private int energy;//amount of energy, 0 = no more energy, 100 = full energy
-
 	// Use this for initialization
 	void Start () {
 		playerRB = GetComponent<Rigidbody>();
 		walker = GameObject.Find ("Walker");
 		walkerMoveTarget = GameObject.Find ("WalkerMoveTarget");
 		walkerRB = walker.GetComponent<Rigidbody>();
-		//InvokeRepeating ("inputHandeling", 0f, 1f);
-		StartCoroutine("moveAll");
-        leftEarBattery = MaxLeftEarBattery;
-        rightEarBattery = MaxRightEarBattery;
-        energy = MaxEnergy;
-        heartStat = 50;//50 = initial = healthy; 100 = crazy, 0 = death. going past 100 = goes back to 0
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        //InvokeRepeating ("inputHandeling", 0f, 1f);
+        StartCoroutine("moveAll");
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if (Input.GetButtonDown("WalkForward")) {
 			walk = true;
 		}
@@ -99,7 +80,7 @@ public class PlayerControl : MonoBehaviour {
 				moveWalker ();
 				yield return new WaitForSeconds (3);
 			}
-			yield return new WaitForSeconds (1);
+			yield return new WaitForSeconds (1*0.2f);
 		}
 	}
 
@@ -143,4 +124,6 @@ public class PlayerControl : MonoBehaviour {
     
     //updates heart status based on..??
     //needs to add fixedUpdate for battery life based on actual time instead of frames
+
+
 }
