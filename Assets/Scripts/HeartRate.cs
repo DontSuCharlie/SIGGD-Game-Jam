@@ -30,8 +30,7 @@ public class HeartRate : MonoBehaviour {
 	}
 
 	public void OnDied () {
-		GetComponent<PlayerControl>().isAlive = false;
-		Debug.Log("Player has died.");
+		SendMessage ("kill");
 	}
 
 	int EnemiesVisible () {

@@ -9,8 +9,8 @@ public class KillOnContact : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider col) {
-		if (col.transform == ai.player) {
-			col.GetComponent<HeartRate>().OnDied();
+		if (col.transform.gameObject == ai.player.gameObject) {
+			ai.player.SendMessage("kill");
 		}
 	}
 }

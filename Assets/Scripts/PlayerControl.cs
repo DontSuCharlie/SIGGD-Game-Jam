@@ -106,7 +106,7 @@ public class PlayerControl : MonoBehaviour {
 			float newYRot = Input.GetAxis ("Mouse X") + yRot;
 			float newXRot = (-Input.GetAxis ("Mouse Y")) + xRot;
 			//Debug.Log (newYRot);
-			Debug.Log (Input.GetAxis ("Mouse Y"));
+			//Debug.Log (Input.GetAxis ("Mouse Y"));
 			//limit horizontal rotation
 			if ((newYRot > 65 && newYRot < 325) || (newYRot > 180 && newYRot < 65)) {
 				//Debug.Log (newYRot);
@@ -188,7 +188,7 @@ public class PlayerControl : MonoBehaviour {
 	void tooFarFromWalker() {
 		if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) > maxWalkerDist) {
 			//playerRB.velocity = Vector3.zero;
-			kill ();
+			die ();
 		}
 	}
     
@@ -201,6 +201,8 @@ public class PlayerControl : MonoBehaviour {
 
 	void die() {
 		alive = false;
+		Debug.Log ("you dead son");
+		playerRB.AddRelativeForce(new Vector3(1,0,0), ForceMode.Impulse);
 		playerRB.constraints = RigidbodyConstraints.None;
 	}
 
