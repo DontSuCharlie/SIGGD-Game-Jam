@@ -50,7 +50,6 @@ public class PlayerControl : MonoBehaviour {
 				thrustWalker ();
 			}
 		}
-
 	}
 
 
@@ -189,13 +188,20 @@ public class PlayerControl : MonoBehaviour {
 	void tooFarFromWalker() {
 		if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) > maxWalkerDist) {
 			//playerRB.velocity = Vector3.zero;
-			playerRB.constraints = RigidbodyConstraints.None;
-			alive = false;
+			kill ();
 		}
 	}
     
     //updates heart status based on..??
     //needs to add fixedUpdate for battery life based on actual time instead of frames
 
+	public void kill() {
+		die ();
+	}
+
+	void die() {
+		alive = false;
+		playerRB.constraints = RigidbodyConstraints.None;
+	}
 
 }
