@@ -28,7 +28,11 @@ GameObject:
   - 136: {fileID: 13626690}
   - 114: {fileID: 11418094}
   - 54: {fileID: 5445330}
+<<<<<<< HEAD
+  - 114: {fileID: 11448348}
+=======
   - 195: {fileID: 19590784}
+>>>>>>> 3d6f8246690e387a764cee096a43dd0626c2b446
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -154,7 +158,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -14.1275673, y: -2.01202287e-17, z: 9.0613451}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 440918}
@@ -404,9 +408,33 @@ MonoBehaviour:
   walkSpeed: .200000003
   maxSpeed: .800000012
   moveDelay: 2
+<<<<<<< HEAD
+  walkDistance: 1.10000002
+  maxWalkerDist: 4
+  alive: 1
+--- !u!114 &11448348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba7bc2f4ecfd89429ca09d80ad8a0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 90
+  rateChange: 1
+  normalRate: 90
+  maxRate: 120
+  minRate: 50
+  rateDisplay: {fileID: 0}
+  fov: 60
+=======
   walkDistance: .5
   maxWalkerDist: 3.5
   alive: 1
+>>>>>>> 3d6f8246690e387a764cee096a43dd0626c2b446
 --- !u!114 &11470736
 MonoBehaviour:
   m_ObjectHideFlags: 1
