@@ -112,30 +112,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!1 &237994770 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 120992, guid: e695aba71f9f4de4eb6d49e268eece0c, type: 2}
-  m_PrefabInternal: {fileID: 534963517}
---- !u!195 &237994775
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 237994770}
-  m_Enabled: 0
-  m_Radius: .5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &433144338
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,23 +224,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11418094, guid: e695aba71f9f4de4eb6d49e268eece0c, type: 2}
-      propertyPath: walkDistance
-      value: .5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5445330, guid: e695aba71f9f4de4eb6d49e268eece0c, type: 2}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
-    - target: {fileID: 410044, guid: e695aba71f9f4de4eb6d49e268eece0c, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11418094, guid: e695aba71f9f4de4eb6d49e268eece0c, type: 2}
-      propertyPath: maxWalkerDist
-      value: 3.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 19590784, guid: e695aba71f9f4de4eb6d49e268eece0c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e695aba71f9f4de4eb6d49e268eece0c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &984959971
