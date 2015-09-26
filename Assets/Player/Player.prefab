@@ -28,7 +28,11 @@ GameObject:
   - 136: {fileID: 13626690}
   - 114: {fileID: 11418094}
   - 54: {fileID: 5445330}
+<<<<<<< HEAD
   - 114: {fileID: 11448348}
+=======
+  - 195: {fileID: 19590784}
+>>>>>>> 3d6f8246690e387a764cee096a43dd0626c2b446
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -130,7 +134,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.20000005}
+  m_LocalPosition: {x: 0, y: 0, z: -1.5}
   m_LocalScale: {x: 1, y: .833333313, z: 2}
   m_Children: []
   m_Father: {fileID: 440918}
@@ -322,7 +326,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!54 &5490260
 Rigidbody:
@@ -402,8 +406,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSpeed: .200000003
   walkSpeed: .200000003
-  maxSpeed: .5
+  maxSpeed: .800000012
   moveDelay: 2
+<<<<<<< HEAD
   walkDistance: 1.10000002
   maxWalkerDist: 4
   alive: 1
@@ -425,6 +430,11 @@ MonoBehaviour:
   minRate: 50
   rateDisplay: {fileID: 0}
   fov: 60
+=======
+  walkDistance: .5
+  maxWalkerDist: 3.5
+  alive: 1
+>>>>>>> 3d6f8246690e387a764cee096a43dd0626c2b446
 --- !u!114 &11470736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,6 +477,26 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!195 &19590784
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120992}
+  m_Enabled: 0
+  m_Radius: .5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

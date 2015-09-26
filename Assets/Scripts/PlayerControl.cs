@@ -11,11 +11,11 @@ public class PlayerControl : MonoBehaviour {
 	private bool walk = false;
 	public float turnSpeed = 0.2f;
 	public float walkSpeed = 0.2f;
-	public float maxSpeed = 0.5f;
+	public float maxSpeed = .8f;
 	private bool leftBlocked = false;
 	private bool rightBlocked = false;
 	public float moveDelay = 2f;
-	public float walkDistance = 1;
+	public float walkDistance = 0.5f;
 	private bool canRotate = true;
 	public float maxWalkerDist = 3.5f;
 	public bool alive = true;
@@ -140,7 +140,7 @@ public class PlayerControl : MonoBehaviour {
 
 	public void moveWalker() {
 		walker.transform.position = transform.TransformPoint(new Vector3(0,1,1.5f)); //reset walker position
-		walkerRB.AddRelativeForce (new Vector3 (0, 2, 2), ForceMode.Impulse);
+		walkerRB.AddRelativeForce (new Vector3 (0, 1.5f, 2), ForceMode.Impulse);
 
 	}
 
