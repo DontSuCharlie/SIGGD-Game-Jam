@@ -48,11 +48,4 @@ public class RobotAI : MonoBehaviour {
 			return false;
 		}
 	}
-
-	public void findPlayer() {
-		player = GameObject.Find ("Player").transform;
-	}
-	public void loosePlayer() {
-		player = null;
-	}
 }
