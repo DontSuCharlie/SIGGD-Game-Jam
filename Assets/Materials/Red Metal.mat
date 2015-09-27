@@ -102,7 +102,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .197999999
+        second: .250999987
       data:
         first:
           name: _BumpScale

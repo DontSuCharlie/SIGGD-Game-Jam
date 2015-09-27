@@ -10,7 +10,7 @@ public class KillOnContact : MonoBehaviour {
 
 	void OnTriggerEnter (Collider col) {
 		if (col.transform.gameObject == ai.player.gameObject) {
-			ai.player.SendMessage("kill");
+			col.GetComponent<HeartRate>().OnDied();
 			ai.GetComponent<NavMeshAgent>().Stop();
 			ai.GetComponent<NavMeshAgent>().enabled = false;
 			ai.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;

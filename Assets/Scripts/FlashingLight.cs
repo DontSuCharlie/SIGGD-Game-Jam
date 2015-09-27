@@ -2,17 +2,17 @@
 using System.Collections;
 
 public class FlashingLight : MonoBehaviour {
-	private Light light;
+	private Light vLight;
 	private AudioSource source;
 	private float[] samples = new float[64];
 
 	void Start () {
 		source = GetComponent<AudioSource>();
-		light = GetComponent<Light>();
+		vLight = GetComponent<Light>();
 	}
 	
 	void Update () {
 		source.GetSpectrumData(samples, 0, FFTWindow.Rectangular);
-		light.intensity = samples[0] * 7 + 1;
+		vLight.intensity = samples[0] * 7 + 1;
 	}
 }

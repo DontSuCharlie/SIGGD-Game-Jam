@@ -21,11 +21,14 @@ public class HeartRate : MonoBehaviour {
 		if (rate < minRate || rate > maxRate) OnDied();
 		else {
 			int ev = EnemiesVisible();
-			if (ev > 0) rate += rateChange * ev * ev;
+			if (ev > 0) {
+				rate += rateChange * ev * ev;
+				Debug.Log("Can see enemy.");
+			}
 			else if (rate < normalRate) rate += rateChange;
 			else if (rate > normalRate) rate -= rateChange;
-			rateDisplay.text = Mathf.Round(rate).ToString();
 		}
+		rateDisplay.text = Mathf.Round(rate).ToString();
 	}
 
 	public void OnDied () {
