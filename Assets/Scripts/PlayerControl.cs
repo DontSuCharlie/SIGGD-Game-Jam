@@ -113,7 +113,7 @@ public class PlayerControl : MonoBehaviour {
 				newYRot = yRot;
 			}
 			//limit vertical rotation
-			if ((newXRot > 5 && newXRot < 180) || (newXRot < 340 && newXRot > 275)) {
+			if ((newXRot > 15 && newXRot < 180) || (newXRot < 340 && newXRot > 275)) {
 				//Debug.Log (newXRot);
 				newXRot = xRot;
 			}
