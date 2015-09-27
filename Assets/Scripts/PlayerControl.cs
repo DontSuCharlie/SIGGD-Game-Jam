@@ -11,11 +11,11 @@ public class PlayerControl : MonoBehaviour {
 	private bool walk = false;
 	public float turnSpeed = 0.2f;
 	public float walkSpeed = 0.2f;
-	public float maxSpeed = .8f;
+	public float maxSpeed = 0.5f;
 	private bool leftBlocked = false;
 	private bool rightBlocked = false;
 	public float moveDelay = 2f;
-	public float walkDistance = 0.5f;
+	public float walkDistance = 1;
 	private bool canRotate = true;
 	public float maxWalkerDist = 3.5f;
 	public bool alive = true;
@@ -50,6 +50,7 @@ public class PlayerControl : MonoBehaviour {
 				thrustWalker ();
 			}
 		}
+
 	}
 
 
@@ -106,7 +107,7 @@ public class PlayerControl : MonoBehaviour {
 			float newYRot = Input.GetAxis ("Mouse X") + yRot;
 			float newXRot = (-Input.GetAxis ("Mouse Y")) + xRot;
 			//Debug.Log (newYRot);
-			//Debug.Log (Input.GetAxis ("Mouse Y"));
+			Debug.Log (Input.GetAxis ("Mouse Y"));
 			//limit horizontal rotation
 			if ((newYRot > 65 && newYRot < 325) || (newYRot > 180 && newYRot < 65)) {
 				//Debug.Log (newYRot);
@@ -128,7 +129,7 @@ public class PlayerControl : MonoBehaviour {
 	IEnumerator moveAll() {
 		while (true) {
 			while (walk) {
-				if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) < walkDistance + 3.5f){
+				if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) < walkDistance + 1){
 					moveWalker ();
 				}
 				yield return new WaitForSeconds (moveDelay);
@@ -139,7 +140,7 @@ public class PlayerControl : MonoBehaviour {
 
 	public void moveWalker() {
 		walker.transform.position = transform.TransformPoint(new Vector3(0,1,1.5f)); //reset walker position
-		walkerRB.AddRelativeForce (new Vector3 (0, 1.5f, 2), ForceMode.Impulse);
+		walkerRB.AddRelativeForce (new Vector3 (0, 2, 2), ForceMode.Impulse);
 
 	}
 
@@ -187,23 +188,14 @@ public class PlayerControl : MonoBehaviour {
 
 	void tooFarFromWalker() {
 		if (Vector3.Distance (transform.position, walkerMoveTarget.transform.position) > maxWalkerDist) {
-			//playerRB.velocity = Vector3.zero;
-			die ();
+			playerRB.velocity = Vector3.zero;
+			playerRB.constraints = RigidbodyConstraints.None;
+			alive = false;
 		}
 	}
     
     //updates heart status based on..??
     //needs to add fixedUpdate for battery life based on actual time instead of frames
 
-	public void kill() {
-		die ();
-	}
-
-	void die() {
-		alive = false;
-		Debug.Log ("you dead son");
-		playerRB.AddRelativeForce(new Vector3(1,0,0), ForceMode.Impulse);
-		playerRB.constraints = RigidbodyConstraints.None;
-	}
 
 }
