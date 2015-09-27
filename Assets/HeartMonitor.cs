@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WalkerShove : MonoBehaviour {
+public class HeartMonitor : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

@@ -24,13 +24,12 @@ public class HeartRate : MonoBehaviour {
 			if (ev > 0) rate += rateChange * ev * ev;
 			else if (rate < normalRate) rate += rateChange;
 			else if (rate > normalRate) rate -= rateChange;
-			
-			if (rateDisplay != null) rateDisplay.text = Mathf.Round(rate).ToString();
+			rateDisplay.text = Mathf.Round(rate).ToString();
 		}
 	}
 
 	public void OnDied () {
-		SendMessage ("kill");
+		Debug.Log("Player has died.");
 	}
 
 	int EnemiesVisible () {

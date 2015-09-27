@@ -13,16 +13,10 @@ public class RobotDetect : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter (Collider col) {
-		if (col.gameObject.name == "Player") {
-			SendMessageUpwards ("findPlayer");
-			robotAI.follow = true;
-		}
+		robotAI.follow = true;
 	}
 	
 	void OnTriggerExit (Collider col) {
-		if (col.gameObject.name == "Player") {
-			robotAI.follow = false;
-			SendMessageUpwards ("loosePlayer");
-		}
+		robotAI.follow = false;
 	}
 }
