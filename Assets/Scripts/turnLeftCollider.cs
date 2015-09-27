@@ -13,10 +13,14 @@ public class turnLeftCollider : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter() {
-		SendMessageUpwards("leftIsBlocked");
+	void OnTriggerEnter(Collider other) {
+		if (other.isTrigger == false) {
+			SendMessageUpwards ("leftIsBlocked");
+		}
 	}
-	void OnTriggerExit() {
-		SendMessageUpwards("leftIsNotBlocked");
+	void OnTriggerExit(Collider other) {
+		if (other.isTrigger == false) {
+			SendMessageUpwards("leftIsNotBlocked");
+		}
 	}
 }
